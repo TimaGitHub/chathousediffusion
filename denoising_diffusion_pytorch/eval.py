@@ -1,8 +1,26 @@
 import numpy as np
-
-from .image_process import cmap
 import torch
 
+
+def get_room_cmap():
+    """只返回房间类颜色"""
+    color = np.array(
+        [
+            [238, 232, 170],  # Livingroom
+            [255, 165, 0],  # Masterroom
+            [240, 128, 128],  # Kitchen
+            [173, 216, 210],  # Bathroom
+            [107, 142, 35],  # Balcony
+            [218, 112, 214],  # Diningroom
+            [221, 160, 221],  # Storage
+            [255, 215, 0],  # Commonroom
+        ],
+        dtype=np.int64,
+    )
+    return color / 255.0
+
+
+cmap = get_room_cmap()
 
 def cal_type_iou(img1, img2, type):
     color = cmap[type]*255
