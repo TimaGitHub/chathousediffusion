@@ -442,7 +442,7 @@ class GaussianDiffusion(nn.Module):
         
         if self.cross_attention_edit is not None:
             self.cross_attention_edit.reset()
-        for time, time_next in tqdm(time_pairs, desc="sampling loop time step"):
+        for time, time_next in tqdm(time_pairs, desc="sampling loop time step", leave=False):
             if self.cross_attention_edit is not None:
                 self.cross_attention_edit.next_timestep()
             time_cond = torch.full((batch,), time, device=device, dtype=torch.long)
