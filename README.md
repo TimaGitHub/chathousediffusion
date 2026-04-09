@@ -75,3 +75,4 @@ python test.py
 # Визуальная проверка результатов
 python visualize_check.py
 ```
+<img width="1487" height="874" alt="image" src="https://github.com/user-attachments/assets/9556a551-fcd7-4fd6-a10b-a4535832a584" />
