@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     model = Unet(**params["unet_dict"])
 
-    params["diffusion_dict"]["sampling_timesteps"] = 2
+    # params["diffusion_dict"]["sampling_timesteps"] = 2
 
     diffusion = GaussianDiffusion(model, **params["diffusion_dict"])
 
