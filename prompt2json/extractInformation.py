@@ -1,5 +1,5 @@
-# from langchain_core.pydantic_v1 import BaseModel, Field, PrivateAttr
-from pydantic import BaseModel, Field, PrivateAttr
+from langchain_core.pydantic_v1 import BaseModel, Field, PrivateAttr
+# from pydantic import BaseModel, Field, PrivateAttr
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from typing import List, Dict, Optional
