@@ -41,7 +41,7 @@ def organize_files_by_copying():
 
 if __name__ == "__main__":
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+    # os.environ["CUDA_VISIBLE_DEVICES"] = "2"
     results_folder = "./results"
     train_num_workers = 0
     with open(os.path.join(results_folder, "params.pkl"), "rb") as f:
