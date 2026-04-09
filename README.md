@@ -1,73 +1,77 @@
-# ChatHouseDiffusion
+# ChatHouseDiffusion 🏠💬
 
-Large language models and diffusion models are used to generate and edit the room plan with text prompts.
+## 🛠 Установка
 
-## Data
+### 1. Системные требования
+Перед началом работы убедитесь, что в системе установлен **Microsoft Visual C++ Redistributable**. 
 
-Our training data is based on the [RPLAN dataset](http://staff.ustc.edu.cn/~fuxm/projects/DeepLayout/index.html) and we evaluate our method's performance using the [Tell2Design dataset](https://github.com/LengSicong/Tell2Design).
+### 2. Клонирование и настройка Python
+Выполните команды в терминале:
 
-The training data can be downloaded in <https://cloud.tsinghua.edu.cn/f/cda4cb89daef4da2b158/>
- and the test data (We use moonshot-v1-8k to preprocess the input texts in Tell2Design dataset) can be downloded in <https://cloud.tsinghua.edu.cn/f/2844208e0c344d18bd72/>
+```bash
+# Клонирование репозитория
+git clone https://github.com/ChatHouseDiffusion/chathousediffusion.git
+cd chathousediffusion
 
-## Quick start
+# Установка зависимостей
+pip install -r requirements.txt
+```
 
-We've implemented a UI for ChatHouseDiffusion and you can use it directly. (This environment has been tested and works on Windows 10 with Python 3.10)
+---
 
-1. Install relative packages.
+## 📂 Подготовка данных и весов
 
-    ```shell
-    pip install -r requirements
-    ```
+### 1. Тестовые данные
+1. Скачайте архив с данными по [этой ссылке](https://cloud.tsinghua.edu.cn/f/2844208e0c344d18bd72/).
+2. Извлеките папки `image_test`, `mask_test` и `text_test`.
+3. Разместите их строго по следующему пути:
 
-2. Download the predict model and unzip it in `predict_model`.
-the model and parameters can be downloaded in <https://cloud.tsinghua.edu.cn/f/a01a8205be55462685fd/>
+```text
+chathousediffusion/
+└── chat_test_data/
+    └── 0614-kimi/
+        ├── image_test/
+        ├── mask_test/
+        └── text_test/
+```
 
-3. Create `api_info.json` with your own api infomation in the root path. Any LLM using OpenAI package is supported, such as GPT4, Kimi, Ollama, etc.
+### 2. Веса модели
+1. Скачайте веса по [этой ссылке](https://cloud.tsinghua.edu.cn/f/a01a8205be55462685fd/).
+2. Извлеките содержимое и поместите файлы в две директории (создайте их, если они отсутствуют):
+   * `prefict_model/`
+   * `results/`
 
-    ```json
-    {
-    "api_key": "<your api_key>",
-    "base_url": "https://api.moonshot.cn/v1",
-    "model": "moonshot-v1-8k"
-    }
-    ```
+---
 
-4. Run
+## 🔑 Конфигурация API
 
-    ```shell
-    python ui.py
-    ```
+Для работы модуля LLM (GPT-4, Kimi, Ollama и др.) создайте файл `api_info.json` в корневой директории проекта и добавьте туда свои данные:
 
-The demo is shown following:
-
-<img src="demo.gif" width="50%" alt="demo image">
-
-## Train and test
-
-You can read `train.py` and edit some parameters. Run `python train.py` for training a new model.
-
-You can read `test.py` and edit some parameters. Run `python test.py` for testing.
-
-You can read `predict.py` and change model, editing inject step or sampling timesteps for the ui.
-
-## Method
-
-Our code is based on [Imagen-pytorch](https://github.com/lucidrains/imagen-pytorch) and [Graphormer](https://github.com/microsoft/Graphormer).
-
-The specific method can be found in our paper.
-
-## Citation
-
-Please cite this paper if you use the code.
-
-```bib
-@misc{qin2024chathousediffusionpromptguidedgenerationediting,
-      title={ChatHouseDiffusion: Prompt-Guided Generation and Editing of Floor Plans}, 
-      author={Sizhong Qin and Chengyu He and Qiaoyun Chen and Sen Yang and Wenjie Liao and Yi Gu and Xinzheng Lu},
-      year={2024},
-      eprint={2410.11908},
-      archivePrefix={arXiv},
-      primaryClass={cs.HC},
-      url={https://arxiv.org/abs/2410.11908}, 
+```json
+{
+  "api_key": "<ваш_api_key>",
+  "base_url": "https://api.moonshot.cn/v1",
+  "model": "moonshot-v1-8k"
 }
+```
+*Примечание: Поддерживается любой провайдер, использующий формат OpenAI.*
+
+---
+
+## 🚀 Запуск
+
+### Интерфейс (UI)
+Для запуска графического интерфейса используйте:
+```bash
+python ui.py
+```
+
+### Тестирование и визуализация
+Для проведения тестов и визуального сравнения результатов выполните:
+```bash
+# Запуск тестов
+python test.py
+
+# Визуальная проверка результатов
+python visualize_check.py
 ```
