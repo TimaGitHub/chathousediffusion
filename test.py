@@ -3,6 +3,7 @@ import os
 import pickle
 from PIL import Image
 import pandas as pd
+from pathlib import Path
 
 def organize_files_by_copying():
     # Названия папок
