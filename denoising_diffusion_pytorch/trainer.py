@@ -286,13 +286,14 @@ class Trainer(object):
             val_texts = []
             val_features = []
             idxs = []
-            for (
+            for index, (
                 val_img,
                 val_feature,
                 val_text,
                 val_graphormer_dict,
                 idx,
-            ) in self.val_dl:
+            ) in enumerate(self.val_dl):
+                print(f"Обработано: {index}")
                 if val_img.shape[0] != self.batch_size:
                     batch_size = val_img.shape[0]
                 else:
